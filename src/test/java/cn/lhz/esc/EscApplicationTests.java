@@ -43,11 +43,12 @@ class EscApplicationTests {
       for (Esc esc:user.getEscs()){
 		 es=esc;
 		  Connection connection = sshService.login(esc.getEscPublicIp(),esc.getEscUsername(),esc.getEscPassword());
-		  //user.getConnections().put(esc.getEscId(),connection );
+		  user.getConnections().put(es.getEscId(),connection);
+		  //user.setConnections(map);
 	  }
 
-		//sshService.execute("hostname",user.getConnections().get(es.getEscId()));
-		//System.out.println(user);
+		sshService.execute("hostname",user.getConnections().get(es.getEscId()));
+		System.out.println(user);
 	}
 
 	@Test

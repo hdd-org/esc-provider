@@ -25,10 +25,10 @@ public class EscServiceImpl implements EscService
     @Override
     public int addEsc(Esc esc)
     {
-        esc.setEscPassword(EscUtil.encryption(esc.getEscPassword()));
-        esc.setEscPublicIp(EscUtil.encryption(esc.getEscPublicIp()));
-        esc.setEscPort(EscUtil.encryption(esc.getEscPort()));
-        esc.setEscUsername(EscUtil.encryption(esc.getEscUsername()));
+        esc.setEscPassword(EscUtil.encode(esc.getEscPassword()));
+        esc.setEscPublicIp(EscUtil.encode(esc.getEscPublicIp()));
+        esc.setEscPort(EscUtil.encode(esc.getEscPort()));
+        esc.setEscUsername(EscUtil.encode(esc.getEscUsername()));
         esc.setEscCreateTime((new Date()).toString());
         return escMapper.addEsc(esc);
     }

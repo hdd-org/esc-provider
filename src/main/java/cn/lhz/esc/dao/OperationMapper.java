@@ -1,5 +1,7 @@
 package cn.lhz.esc.dao;
 
-public interface OperationMapper {
+import cn.lhz.esc.entity.Operation;
 
+public interface OperationMapper {
+    int insertOpe(Operation operation);
 }
