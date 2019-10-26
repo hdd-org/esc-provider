@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lhz.esc.dao.EscMapper" >
+  <resultMap id="BaseResultMap" type="cn.lhz.esc.entity.Esc" >
+    <result column="esc_id" property="escId" jdbcType="VARCHAR" />
+    <result column="esc_public_ip" property="escPublicIp" jdbcType="VARCHAR" />
+    <result column="esc_name" property="escName" jdbcType="VARCHAR" />
+    <result column="esc_alias" property="escAlias" jdbcType="VARCHAR" />
+    <result column="esc_username" property="escUsername" jdbcType="VARCHAR" />
+    <result column="esc_password" property="escPassword" jdbcType="VARCHAR" />
+    <result column="esc_port" property="escPort" jdbcType="VARCHAR" />
+    <result column="esc_manufactor" property="escManufactor" jdbcType="VARCHAR" />
+    <result column="esc_create_time" property="escCreateTime" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="addEsc" parameterType="cn.lhz.esc.entity.Esc">
+    <selectKey resultType="java.lang.String" order="BEFORE"
+            keyProperty="escId">
+            select uuid()
+            </selectKey>
+    insert into esc (esc_id,esc_public_ip,esc_name,esc_alias,esc_username,esc_password,esc_port,esc_manufactor,esc_create_time,user_id)
+    values(#{escId},#{escPublicIp},#{escName},#{escAlias},#{escUsername},#{escPassword},#{escPort},#{escManufactor},#{escCreateTime},#{userId})
+
+  </insert>
+</mapper>
