@@ -14,4 +14,15 @@
     <result column="esc_id" property="escId" jdbcType="VARCHAR" />
   </resultMap>
 
+  <insert id="addApp" parameterType="cn.lhz.esc.entity.Application">
+<selectKey resultType="java.lang.String" keyColumn="appid" order="BEFORE">
+  SELECT uuid()
+</selectKey>
+    insert into application (appid,app_version,app_name,app_path,app_port,app_alias,app_url,app_create_time,isOffical,esc_id)
+    VALUES (#{appid},#{appVersion},#{appName},#{appPath},#{appPort},#{appAlias},#{appUrl},#{appCreateTime},#{isoffical},#{escId})
+  </insert>
+
+  <select id="selectAppByEscId" resultMap="BaseResultMap">
+    select * from applicatin where esc_id=#{escId}
+  </select>
 </mapper>

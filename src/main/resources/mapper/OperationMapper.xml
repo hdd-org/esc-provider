@@ -9,5 +9,11 @@
     <result column="op_create_time" property="opCreateTime" jdbcType="VARCHAR" />
     <result column="app_id" property="appId" jdbcType="VARCHAR" />
   </resultMap>
-
+<insert id="insertOpe" parameterType="cn.lhz.esc.entity.Operation">
+  <selectKey resultType="java.lang.String" keyColumn="opId" order="BEFORE">
+    SELECT uuid()
+  </selectKey>
+  INSERT into (op_id,op_name,op_description,op_content,op_create_time,app_id)
+  VALUES (#{opId},#{opName},#{opDescription},#{opContent},#{opCreateTime},#{appId})
+</insert>
 </mapper>

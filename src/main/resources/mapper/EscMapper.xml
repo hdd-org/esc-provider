@@ -23,4 +23,39 @@
     values(#{escId},#{escPublicIp},#{escName},#{escAlias},#{escUsername},#{escPassword},#{escPort},#{escManufactor},#{escCreateTime},#{userId})
 
   </insert>
+
+  <update id="updateEsc">
+    update esc
+    <set>
+<if test="escPublicIp!=null">
+  esc_public_ip=#{escPublicIp},
+</if>
+      <if test="escName!=null">
+        esc_name=#{escName},
+      </if>
+      <if test="escAlias!=null">
+        esc_alias=#{escAlias},
+      </if>
+      <if test="escUsername!=null">
+        esc_username=#{escUsername},
+      </if>
+      <if test="escPassword!=null">
+        esc_password=#{escPassword},
+      </if>
+      <if test="escPort!=null">
+        esc_port=#{escPort},
+      </if>
+      <if test="escManufactor!=null">
+        esc_manufactor=#{escManufactor},
+      </if>
+      <if test="escCreateTime!=null">
+        esc_create_time=#{escCreateTime}
+      </if>
+  </set>
+    where esc_id=#{escId}
+  </update>
+
+<delete id="deleteEsc">
+
+</delete>
 </mapper>
