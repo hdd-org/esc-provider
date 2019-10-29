@@ -25,27 +25,27 @@ public class ThreadPoolConfig
     /**
      * 最小线程数(核心线程数)
      */
-    @Value("#{${threadPool.corePoolSize}}")
-    private int corePoolSize;
+    @Value("${threadPool.corePoolSize}")
+    private Integer corePoolSize;
     /**
      * 最大线程数
      */
-    @Value("#{${threadPool.maxPoolSize}}")
-    private int maxPoolSize;
+    @Value("${threadPool.maxPoolSize}")
+    private Integer maxPoolSize;
     /**
      * 等待队列(队列最大长度)
      */
-    @Value("#{${threadPool.queueCapacity}}")
-    private int queueCapacity;
+    @Value("${threadPool.queueCapacity}")
+    private Integer queueCapacity;
 
     @Value("${threadPool.threadNamePrefix}")
     private String threadNamePrefix;
 
-    @Value("#{${threadPool.keepAliveSeconds}}")
-    private int keepAliveSeconds;
+    @Value("${threadPool.keepAliveSeconds}")
+    private Integer keepAliveSeconds;
 
-    //@Value("#{${threadPool.waitForTasksToCompleteOnShutdown}}")
-   // private boolean waitForTasksToCompleteOnShutdown;
+    @Value("${threadPool.waitForTasksToCompleteOnShutdown}")
+   private Boolean waitForTasksToCompleteOnShutdown;
 
     /**
      * ThredPoolTaskExcutor的处理流程 当池子大小小于corePoolSize，就新建线程，并处理请求
@@ -58,7 +58,6 @@ public class ThreadPoolConfig
     @Bean
     public Executor taskExecutor()
     {
-        System.out.println(corePoolSize);
                 ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
                 //核心线程数量
                 threadPoolTaskExecutor.setCorePoolSize(corePoolSize);
@@ -73,7 +72,7 @@ public class ThreadPoolConfig
                 //线程空闲后最大存活时间60
                 threadPoolTaskExecutor.setKeepAliveSeconds(keepAliveSeconds);
                // 等待所有任务结束后再关闭线程池
-               //threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(waitForTasksToCompleteOnShutdown);
+               threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(waitForTasksToCompleteOnShutdown);
                 //初始化线程池
                 threadPoolTaskExecutor.initialize();
                 return threadPoolTaskExecutor;
