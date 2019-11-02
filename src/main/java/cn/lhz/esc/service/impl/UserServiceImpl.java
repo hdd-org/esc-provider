@@ -34,9 +34,16 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User selectUserByUserNamePassword(String username, String password)
+    public User selectUserByUserNamePassword(User user)
     {
-        return userMapper.selectUserByUserNamePassword(username,EscUtil.md5(password));
+        User result = userMapper.selectUserByUserNamePassword(md5(user));
+        for (Esc esc : result.getEscs()){
+            esc.setEscPassword(EscUtil.decode(esc.getEscPassword()));
+            esc.setEscPort(EscUtil.decode(esc.getEscPort()));
+            esc.setEscPublicIp(EscUtil.decode(esc.getEscPublicIp()));
+            esc.setEscUsername(EscUtil.decode(esc.getEscUsername()));
+        }
+        return result;
     }
 
     /**

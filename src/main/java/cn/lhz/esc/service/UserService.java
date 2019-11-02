@@ -12,6 +12,6 @@ public interface UserService
 
     int updateUser(User user);
 
-    User selectUserByUserNamePassword(String username,String password);
+    User selectUserByUserNamePassword(User user);
 
 }

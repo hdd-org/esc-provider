@@ -6,12 +6,18 @@ import cn.lhz.esc.entity.*;
 import cn.lhz.esc.service.*;
 import cn.lhz.esc.utils.EscUtil;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
+
 
 @SpringBootTest
 class EscApplicationTests {
 
+	@Resource(name = "logger")
+	private Logger log;
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
@@ -36,7 +42,10 @@ class EscApplicationTests {
 
 	@Test
 	void updateUser(){
-		User user = userService.selectUserByUserNamePassword("admin","123456");
+		User u = new User();
+		u.setUserUsername("admin");
+		u.setUserPassword("123456");
+		User user = userService.selectUserByUserNamePassword(u);
 		//user.setUserPassword("1234567");
 		//userService.updateUser(user);
 		Esc es = null;
@@ -46,7 +55,7 @@ class EscApplicationTests {
 		  user.getConnections().put(es.getEscId(),connection);
 		  //user.setConnections(map);
 	  }
-
+          log.info("info日志");
 		sshService.execute("hostname",user.getConnections().get(es.getEscId()));
 		System.out.println(user);
 	}

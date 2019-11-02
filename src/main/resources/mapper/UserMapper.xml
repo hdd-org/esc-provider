@@ -52,7 +52,7 @@
 
     </update>
 
-    <select id="selectUserByUserNamePassword" resultMap="userMap">
+    <select id="selectUserByUserNamePassword" resultMap="userMap" parameterType="cn.lhz.esc.entity.User">
         SELECT *
         from user u join esc e on u.user_id=e.user_id
         <where>

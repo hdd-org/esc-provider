@@ -15,12 +15,13 @@ public class FastJsonConfig
     }
 
     @Bean
-        FastJsonHttpMessageConverter fastJsonHttpMessageConverter(){
-            FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-            com.alibaba.fastjson.support.config.FastJsonConfig
-                    config = new com.alibaba.fastjson.support.config.FastJsonConfig();
-            config.setDateFormat("yyyy-MM-dd HH:mm:ss");
-           converter.setFastJsonConfig(config);
-            return converter;
-        }
+    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter()
+    {
+        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+        com.alibaba.fastjson.support.config.FastJsonConfig
+                config = new com.alibaba.fastjson.support.config.FastJsonConfig();
+        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        converter.setFastJsonConfig(config);
+        return converter;
+    }
 }
